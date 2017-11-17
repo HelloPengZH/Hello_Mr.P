@@ -42,16 +42,18 @@
         		return document.getElementByTagName('')
         	}
         } ,
-        "c": document.createElement,
-        'q': document.querySelector,
-        'qAll': document.querySelectorAll,
+        "c": function(ele){
+        	return document.createElement(ele)
+        },
+        'q': function(select) {
+        	return document.querySelector(select)
+        },
+        'qAll':function(select) {
+        	return  document.querySelectorAll
+        },
         //变量
         "name": "Mr.Peng"
     }
-function test () {
-	var inset =  p.c.call (document ,'p' )
-	return {
-		inset : inset
-	}
-}
-test ()
+
+
+
