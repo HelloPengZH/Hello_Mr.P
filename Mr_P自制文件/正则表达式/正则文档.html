@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            background-color: #eee;
+            border:  1px dashed #666;
+            line-height: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            background-color: rgba(97, 79, 255, 0.58);
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+<!--找什么 , 从哪找 , 找多少-->
+<div>
+
+
+    <br>创建正则对象
+    <br>var regX=new RegExp( 'abc' )
+    <br>var regX2= /abc/
+    <br>var regX3= /abc/g
+
+
+</div>
+<div>
+    <br>正则属性
+    <br>var regX=new RegExp( 'abc' )
+    <br>测试
+    <br>regX.test 包含全部或者一部分 内容 含有就返回 true 否则返回 false
+    <br>
+    <br>提取
+    <br>使用正则表达式可以进行匹配, 使用 exec 可以将匹配到的数据提取出来
+    <br>语法:
+    <br>正则表达式对象.exec( 字符串 ) -> 封装成数组
+    <br>
+    <br>循环提取
+    <br>在一个字符串中将所有复合的要求的字符串提取出来
+    <br>    1> 正则表达式需要使用全局模式
+    <br>        var r = new RegExp( '正则', 'g' );
+    <br>        var r = /正则/g;
+    <br>    2> 调用 exec 首先获得第一个匹配项
+    <br>    再调用一次该方法, 就可以获得 第二个匹配项
+    <br>    一直调用下去, 就可以得到所有的匹配项
+    <br>    直到最后全部匹配完, 如果还用该方法, 则返回 null
+
+
+
+        <p>
+            <br>案例： 在 'abc123def456ghij789klum' 提取数字
+            <br>var str ='abc123def456ghij789klum'
+            <br>var r = /\d+/;
+            <br>r.exec( str )          =>123
+            <br>r.exec( str )          =>123
+            <br>var r = /\d+/g;
+            <br>r.exec( str )			=> 123
+            <br>r.exec( str )			=> 456
+            <br>r.exec( str )			=> 789
+            <br>r.exec( str )			=> null
+            <br>while ( res = r.exec( str ) ) {
+            <br>// 操作 res, 处理捕获的结果
+            <br>console.log( res )
+            <br>}
+        </p>
+</div>
+
+<div>
+    <h2>元字符及部分用法</h2>
+    <br> 1 : -- . --        表示任意 <span>一个</span> 非换行(即不包含回车) 符号
+    <br> 2 : -- () --       表示分组和提高优先级
+    <br> 3 : -- [] --       表示一个字符 即 匹配在"[ 字符 ]"内的任意一个字符 例: [ abc ] 表示一个字符 可以是   a , 或者 b ,或者 c 即 a   ||  b  || c
+    <br>
+    <br> 4 : -- | --        或 表示 ...或者是...
+    <br> 5 : -- \ --        转义字符 表示将 字符表示为字符本身的字面含含义
+    <br> 5 : -- * --        *之前的字符或字符组( abc )出现0次或多次 例 /123*/ 匹配的就是3的出现 可匹配 12中表示出现0次  123 中表示3出现1次  1233表示出现2次 12333表示出现3次 不匹配1      /m(111)*/ 表示匹配 m111 m111111 m 不匹配m11和 m1111
+    <br> 6 : --{}--         表示前面的一个字符 出现了几次  /m{ 10 } / 出现10个m的进行匹配
+    <br> 7 : --(?:)--       匹配并不添加到返回数组
+    <br>
+    <br> 8 : --\w--         匹配所有的字符包括 数字 字符 下划线
+    <br> 8.I : --\W--       不匹配字符 即所有的非数字 字符 下划线
+    <br> 9 : --\s--         空白字符, 包括空格, tab, 回车换行等
+    <br> 10 : --\S-- 	        非空白字符
+        <br>js 中常常使用 [\s\S] 表示任意字符
+    <br> 11 : --\D-- 	            非数字
+    <br> 12 : --\d--              数字
+    <br>
+    <br> 13 : --^--         以...开头 ^1s$ 以1开头 , 以s结尾
+    <br> 14 : --$--         以...结尾
+    <br> 15 : --/(.*)\1/-- 	  反向引用   中"\1"表示第一个"("括号括起来的那一组 和之前完全匹配 即提取成对出项的结构
+
+
+
+
+
+
+
+
+
+    <p>
+      <br> foot与food的匹配
+      <br> /foot|food/ ------ /foo(t/d)/
+      <br> /foo[dt]/
+      <br>
+      <br>  -- \. --       转义字符 表示 " . "
+      <br>  -- \[ \] --    转义字符 表示 " [  ] "
+      <br>  -- \( \) --    转义字符 表示 " ( ) "
+   </p>
+</div>
+
+</body>
+<!--<script>
+    var str = 'lklkjlf43dslkjlkfdsvcz,xcjoajodov53doiuhslkdhojoasd213132jfoiokjsdkjlsadjflhjgsdnaksdjfljgon pzh   jfddafojsadjlhjfhshjdsnk nhovnoiwjoerjofs  abc'
+    var regX = new RegExp('abc') //显示创建
+    var regX2 = /abc/              //隐式创建
+    //    var pzh = new RegExp("pzh")
+    //    var pzh2 = /pzh/
+    /* console.log(regX.test(str));   //str 是否 包含字符串  abc*/
+    str='123'
+    var target = str.replace(/(\D+)/g,"")
+    var px = str.replace(/([\d\-]+)/g,"")||"px"
+
+    console.log();
+    console.log(target);
+    console.log(px);
+    //    var res
+//    var texst1= /\d+/g
+//    while (res = texst1.exec(str)) {
+//           console.log(res);
+//    }
+    str="我我我我我我&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;是是是是-&#45;&#45;&#45;&#45;一一一一一一一-&#45;&#45;&#45;&#45;&#45;&#45;个超级大帅哥";
+    var r= /(.)\1+/
+//    while ( res = r.exec(str) ) {
+//        console.log(res);
+    var str2=str
+/*    while ( r.exec(str2) )
+        str2 =  str.replace(  r , function (s,g1) {
+            var f= g1.charAt(0)
+            return f
+        }  )*/
+//    console.log(str2);
+
+//    }
+//    str.replace(/(.)\1+/,"$1")
+
+</script>-->
+<script>
+    var str ='abc123def456ghij789klum'
+    var r = /\d+/g;
+    console.log(r.exec(str));
+    console.log(r.exec(str));
+    console.log(r.exec(str));
+    console.log(r.exec(str));
+
+</script>
+</html>
